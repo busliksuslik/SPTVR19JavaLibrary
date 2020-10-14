@@ -6,11 +6,11 @@
 package sptvr19library;
 
 
+import tools.managers.SecureManager;
 import entity.Reader;
 import entity.Book;
 import entity.History;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
+import entity.User;
 import java.util.Scanner;
 import tools.managers.BookManager;
 import tools.savers.BookSaver;
@@ -18,6 +18,7 @@ import tools.managers.HistoryManager;
 import tools.savers.HistorySaver;
 import tools.managers.ReaderManager;
 import tools.savers.ReaderSaver;
+import tools.savers.UserSaver;
 
 /**
  *
@@ -27,9 +28,12 @@ class App {
     private Book[] books = new Book[100];
     private Reader[] readers = new Reader[100];
     private History[] histories = new History[100];
+    private User[] users = new User[100];
     private ReaderManager readerManager = new ReaderManager();
     private BookManager booksManager = new BookManager();
     private HistoryManager historyManager = new HistoryManager();
+    private SecureManager secureManager = new SecureManager();
+    private User loginedUser ;
     
 
     public App() {
@@ -44,6 +48,9 @@ class App {
     
     public void run(){
         System.out.println("--- Библиотека ---");
+        this.loginedUser = secureManager.checkTask(users);
+        UserSaver userSaver = new UserSaver();
+        userSaver.saveUsers(users);
         boolean repeat = true;
         do{
             System.out.println("Список задач: ");
@@ -102,7 +109,6 @@ class App {
                     historyManager.printListHistories(histories);
                     break;
                 case "7":
-                    historyManager.printListHistories(histories,true);
                     historyManager.returnBook(histories);
                     break;
                 default:

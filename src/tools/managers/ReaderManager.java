@@ -16,7 +16,7 @@ public class ReaderManager {
     public Reader createReader() {
         Reader reader = new Reader();
         Scanner scanner = new Scanner(System.in);
-        System.out.println("--- Создание книги ---");
+        System.out.println("--- Создание reader ---");
         System.out.print("Reader name: ");
         reader.setName(scanner.nextLine());
         System.out.print("Reader last name: ");

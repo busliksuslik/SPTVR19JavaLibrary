@@ -2,6 +2,7 @@
 /dist
 /nbproject
 /build.xml
-/books
-/history
-/readers
+books
+history
+readers
+users
